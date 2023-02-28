@@ -42,7 +42,7 @@ lr_decay = 0.95
 resnet_model_size = 50
 model_chan_in = len(img_columns)
 n_classes = 2
-epochs = 50
+epochs = 1
 ###############################################
 # run 2
 if run_id == 2:
