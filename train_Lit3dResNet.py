@@ -48,7 +48,7 @@ epochs = 1
 if run_id == 2:
     lr = 0.01
 
-info = f'Lit3dResnet_50_1chan_28feb23_{info_cols}_cv_{cv_split}_{epochs}_epochs_run_{run_id}'
+info = f'Lit3dResnet_50_1chan_28feb23_{info_cols}_cv_{cv_split}_{epochs}_epochs_run_{run_id}TEST'
 
 
 
