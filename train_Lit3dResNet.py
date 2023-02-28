@@ -13,8 +13,7 @@ import pickle
 import argparse
 import socket
 import torch
-import time
-time.sleep(10)
+
 
 
 print(torch.cuda.is_available())
