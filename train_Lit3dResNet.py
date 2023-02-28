@@ -77,9 +77,9 @@ path_checkpoints = path_df.parent / 'checkpoints'
 
 # Data stuff
 ds_train = EcatDFDataset(df, mode='train', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('train'),
-                         data_path_col=data_path_col)
+                         path_data_col=data_path_col)
 ds_valid = EcatDFDataset(df, mode='valid', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('valid'),
-                         data_path_col=data_path_col)
+                         path_data_col=data_path_col)
 dl_train = DataLoader(ds_train, batch_size=bs, shuffle=True, num_workers=4)
 dl_valid = DataLoader(ds_valid, batch_size=bs, shuffle=False, num_workers=4)
 
