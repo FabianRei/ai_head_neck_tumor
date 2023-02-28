@@ -1,10 +1,10 @@
 import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_MAX_THREADS"] = "1"
+# os.environ["OMP_NUM_THREADS"] = "1"
+# os.environ["OPENBLAS_NUM_THREADS"] = "1"
+# os.environ["MKL_NUM_THREADS"] = "1"
+# os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
+# os.environ["NUMEXPR_NUM_THREADS"] = "1"
+# os.environ["NUMEXPR_MAX_THREADS"] = "1"
 
 import pandas as pd
 from pathlib import Path
@@ -68,8 +68,8 @@ path_checkpoints = path_df.parent / 'checkpoints'
 # Data stuff
 ds_train = EcatDFDataset(df, mode='train', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('train'))
 ds_valid = EcatDFDataset(df, mode='valid', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('valid'))
-dl_train = DataLoader(ds_train, batch_size=bs, shuffle=True, num_workers=8)
-dl_valid = DataLoader(ds_valid, batch_size=bs, shuffle=False, num_workers=8)
+dl_train = DataLoader(ds_train, batch_size=bs, shuffle=True, num_workers=4)
+dl_valid = DataLoader(ds_valid, batch_size=bs, shuffle=False, num_workers=4)
 
 # Model & training stuff
 params = {'lr': lr, 'adam_regularization': adam_regularization, 'lr_decay': lr_decay, 'resnet_model_size': resnet_model_size, 
