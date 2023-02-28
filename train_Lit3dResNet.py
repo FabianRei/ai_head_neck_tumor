@@ -49,13 +49,13 @@ lr_decay = 0.95
 resnet_model_size = 50
 model_chan_in = len(img_columns)
 n_classes = 2
-epochs = 1
+epochs = 50
 ###############################################
 # run 2
 if run_id == 2:
     lr = 0.01
 
-info = f'Lit3dResnet_50_1chan_28feb23_{info_cols}_cv_{cv_split}_{epochs}_epochs_run_{run_id}TEST'
+info = f'Lit3dResnet_50_1chan_28feb23_{info_cols}_cv_{cv_split}_{epochs}_epochs_run_{run_id}'
 
 
 
