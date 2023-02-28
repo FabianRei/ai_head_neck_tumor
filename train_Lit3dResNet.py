@@ -12,6 +12,12 @@ import pytorch_lightning as pl
 import pickle
 import argparse
 import socket
+import torch
+
+
+print(torch.cuda.is_available())
+print(torch.cuda.current_device())
+print(torch.cuda.get_device_name(torch.cuda.current_device()))
 
 from data_loading.data_set import EcatDFDataset, get_default_tio_transform
 from torch.utils.data import DataLoader
