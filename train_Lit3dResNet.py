@@ -84,7 +84,7 @@ dl_valid = DataLoader(ds_valid, batch_size=bs, shuffle=False, num_workers=4)
 
 # Model & training stuff
 params = {'lr': lr, 'adam_regularization': adam_regularization, 'lr_decay': lr_decay, 'resnet_model_size': resnet_model_size, 
-          'model_chan_in': 1, 'n_classes': 2, 'bs': bs, 'img_column': img_columns, 'data_path': data_path, 'path_df': path_df}
+          'model_chan_in': model_chan_in, 'n_classes': n_classes, 'bs': bs, 'img_column': img_columns, 'data_path': data_path, 'path_df': path_df}
 model = Lit3dResnet(params)
 trainer = pl.Trainer(accelerator='gpu', devices=1, max_epochs=epochs, enable_checkpointing=False, default_root_dir=path_checkpoints)
 trainer.fit(model, dl_train, dl_valid)
