@@ -63,17 +63,21 @@ if socket.gethostname() == 'blue':
     path_df = Path('/home/fabian/projects/phd/ai_radiation_therapy/ai_head_neck_tumor/data/clinical_data_has_CT_PT_21feb23.feather')
     df = pd.read_feather(path_df)
     data_path = Path(df.iloc[0].blue_data_path)
+    data_path_col = 'blue_data_path'
 else:
     path_df = Path("/home/freith/projects/ai_head_neck_tumor/data/clinical_data_has_CT_PT_21feb23.feather")
     df = pd.read_feather(path_df)
     data_path = Path(df.iloc[0].mdc_data_path)
+    data_path_col = 'mdc_data_path'
 path_checkpoints = path_df.parent / 'checkpoints'
 
 
 
 # Data stuff
-ds_train = EcatDFDataset(df, mode='train', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('train'))
-ds_valid = EcatDFDataset(df, mode='valid', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('valid'))
+ds_train = EcatDFDataset(df, mode='train', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('train'),
+                         data_path_col=data_path_col)
+ds_valid = EcatDFDataset(df, mode='valid', cv_split=cv_split,  img_columns=img_columns, transform=get_default_tio_transform('valid'),
+                         data_path_col=data_path_col)
 dl_train = DataLoader(ds_train, batch_size=bs, shuffle=True, num_workers=4)
 dl_valid = DataLoader(ds_valid, batch_size=bs, shuffle=False, num_workers=4)
 
@@ -81,7 +85,7 @@ dl_valid = DataLoader(ds_valid, batch_size=bs, shuffle=False, num_workers=4)
 params = {'lr': lr, 'adam_regularization': adam_regularization, 'lr_decay': lr_decay, 'resnet_model_size': resnet_model_size, 
           'model_chan_in': 1, 'n_classes': 2, 'bs': bs, 'img_column': img_columns, 'data_path': data_path, 'path_df': path_df}
 model = Lit3dResnet(params)
-trainer = pl.Trainer(gpus=1, max_epochs=epochs, enable_checkpointing=False, default_root_dir=path_checkpoints)
+trainer = pl.Trainer(accelerator='gpu', devices=1, max_epochs=epochs, enable_checkpointing=False, default_root_dir=path_checkpoints)
 trainer.fit(model, dl_train, dl_valid)
 
 # Saving stuff
