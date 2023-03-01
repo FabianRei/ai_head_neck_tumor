@@ -66,7 +66,7 @@ if socket.gethostname() == 'blue':
     data_path = Path(df.iloc[0].blue_data_path)
     data_path_col = 'blue_data_path'
 else:
-    path_df = Path("/home/freith/projects/ai_head_neck_tumor/data/clinical_data_has_CT_PT_21feb23.feather")
+    path_df = Path("/fast/AG_Kainmueller/fabian/projects/ai_head_neck_tumor/data/clinical_data_has_CT_PT_21feb23.feather")
     df = pd.read_feather(path_df)
     data_path = Path(df.iloc[0].mdc_data_path)
     data_path_col = 'mdc_data_path'
